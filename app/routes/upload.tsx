@@ -5,7 +5,7 @@ import { usePuterStore } from "~/lib/puter";
 import { useNavigate } from "react-router";
 import { convertPdfToImage } from "~/lib/pdf2img";
 import { generateUUID } from "~/lib/utils";
-import { prepareInstructions } from "../../constants";
+import { prepareInstructions, AIResponseFormat } from "../../constants";
 
 const Upload = () => {
   const { fs, isLoading, auth, ai, kv } = usePuterStore();
@@ -70,6 +70,7 @@ const Upload = () => {
     const prompt = prepareInstructions({
       jobTitle,
       jobDescription,
+      AIResponseFormat,
     });
     const feedback = await ai.feedback(uploadedFile.path, prompt);
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router";
 import { usePuterStore } from "~/lib/puter";
-import Summary from "~/routes/Summary";
+import Summary from "~/components/Summary";
 import Details from "~/components/Details";
 import ATS from "~/components/ATS";
 
@@ -44,7 +44,7 @@ const Resume = () => {
       const imagUrl = URL.createObjectURL(imageBlob);
       setImageUrl(imagUrl);
 
-      setFeedback(data.feedback);
+      setFeedback(JSON.parse(data.feedback));
       console.log({ resumeUrl, imagUrl, feedback: data.feedback });
     };
 
@@ -95,7 +95,6 @@ const Resume = () => {
             <div
               className={"flex flex-col gap-8 animate-in fade-in duration-1000"}
             >
-              Summary ATS Details
               <Summary feedback={feedback} />
               <ATS
                 score={feedback.ATS.score}
